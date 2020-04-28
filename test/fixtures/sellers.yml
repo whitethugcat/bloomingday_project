@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  img: MyString
+  region: MyString
+  sort: MyString
+  location: MyString
+  open: MyString
+  close: MyString
+  contact: MyString
+  delivery: 1
+
+two:
+  name: MyString
+  img: MyString
+  region: MyString
+  sort: MyString
+  location: MyString
+  open: MyString
+  close: MyString
+  contact: MyString
+  delivery: 1
