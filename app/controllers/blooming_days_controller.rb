@@ -1,5 +1,5 @@
 class BloomingDaysController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
+  before_action :authenticate_user!, except: [:index, :show]
   
   #buyer가 보는 첫 페이지 (seller 목록)
   def index
@@ -17,5 +17,8 @@ class BloomingDaysController < ApplicationController
   #seller 개별 페이지
   def show
     @seller = Seller.find(params[:id])
+    @comment = Comment.all
+    @items = Item.all
   end
+
 end

@@ -1,21 +1,54 @@
-<h1>#index 프론트 페이지</h1>
-<br>
-<% if user_signed_in? %>
-    <%= current_user.email %> 님 안녕하세요!
-    <a href="/users/sign_out" data-method="delete">로그아웃</a>
-   
-<% else %>
-    <a href="/users/sign_in">로그인</a>
-<% end %>
+<body>
+    
+<div class="background">
 
+<!--***헤더부분***-->
+
+    <div class="header">
+        <div class="my_page">
+            <% if user_signed_in? %>
+                <%= current_user.email %> 님 안녕하세요!
+            <% else %>
+                안녕하세요, 화요일입니다 :)
+            <% end %>
+        </div>
+        <div class="logo">
+            화(花)요일
+        </div>
+        <div class="page_name">
+            구매자 페이지
+        </div>
+        <!--메인페이지 링크 삭제-->
+        <div class="login_logout">
+            <% if user_signed_in? %>
+                <a href="/users/sign_out" data-method="delete">로그아웃</a>
+            <% else %>
+                <a href="/users/sign_in">로그인</a>
+            <% end %>
+        </div>
+    </div>
 <hr>
 
-<% @sellers.each do |seller|%>
-    호실 : <%= seller.region %> <br>
-    <% if seller.img.attached? %>
-    <a href="/blooming_days/<%= seller.id %>/show">이미지 : <img src="<%= url_for(seller.img) %>"/> </a><br>
-    <% end %>
-    상호명 : <%= seller.name %> <br>
-    상호위치 : <%= seller.region %><br>
+<!--***컨텐츠부분***-->
+
+<div class="container">
+<div class="content">
     
+    <!--스토어 카드-->
+    
+<% @sellers.each do |seller|%>
+    <div class="card">
+        <div class="store_name">
+            <a href="/blooming_days/<%= seller.id %>/show"><%= seller.name %></a>
+        </div>
+        <div class="location">
+            <%= seller.location %>
+        </div>
+        <div class="type">
+            <%= seller.sort %>
+        </div>
+        <% if seller.img.attached? %>
+        <img class="store_photo" src="<%= url_for(seller.img) %>">
+        <% end %>
+    </div>
 <% end %>

@@ -1,7 +1,212 @@
-<h1>BloomingDays#show</h1>
-<p>Find me in app/views/blooming_days/show.html.erb</p>
+<!--구매자페이지 첫번째 페이지-->
 
-상세페이지<br>
-<a href="/">처음으로 돌아가기</a>
 
-판매 품목 : <%= @seller.sort  %> <br>
+<body>
+    
+<div class="background">
+
+<!--***헤더부분***-->
+
+    <div class="header">
+        <div class="my_page">
+            <% if user_signed_in? %>
+                <%= current_user.email %> 님 안녕하세요!
+            <% else %>
+                안녕하세요, 화요일입니다 :)
+            <% end %>
+        </div>
+        <div class="logo">
+            화(花)요일
+        </div>
+        <div class="page_name">
+            구매자 페이지
+        </div>
+        <!--메인페이지 링크 삭제-->
+        <div class="login_logout">
+            <% if user_signed_in? %>
+                <a href="/users/sign_out" data-method="delete">로그아웃</a>
+            <% else %>
+                <a href="/users/sign_in">로그인</a>
+            <% end %>
+        </div>
+
+
+<!--***디테일 헤더***-->
+
+    <div class="detail_header">
+        <div class="detail_header_back">
+            <a href="/blooming_days/index"><img class="detail_header_back" src="<%= asset_path("back_button.png") %>"></a>
+        </div>
+        <div class="detail_header_storename">
+            <%= @seller.name %>
+        </div>
+    </div>
+    <div class="detail_header_menu">
+        <div class="detail_header_menu_items">
+            <a href="#store_detail">세부정보</a>
+        </div>
+        <div class="detail_header_menu_items">
+            <a href="#item_detail">판매리스트</a>
+        </div>
+        <div class="detail_header_menu_items">
+            <a href="#review_detail">리뷰</a>
+        </div>
+    </div>
+</div>
+
+<!--***사진***-->
+
+<div class="container">
+<div class="detail_content">
+    
+    <div class="side-crop">
+        <% if @seller.img.attached? %>
+        <img class="detail_photo" src="<%= url_for(@seller.img) %>">
+        <% end %>
+    </div>
+
+<!--***세부정보***-->
+
+<div id="store_detail">
+
+    <div class="detail_section_header">
+        <div class="detail_section_icon">
+            <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
+        </div>
+        <div class="detail_section_name">
+            세부정보
+        </div>
+    </div>
+
+    <div class="detail_section_body">
+    <div class="store_table">
+        <table>     
+            <tr>
+                <th>판매처</th>
+                <td><%= @seller.name %></td>
+            </tr>
+            <tr>
+                <th>지역</th>
+                <td><%= @seller.location %></td>
+            </tr>
+            <tr>
+                <th>품목</th>
+                <td><%= @seller.sort %></td>
+            </tr>
+            <tr>
+                <th>호수</th>
+                <td><%= @seller.region %></td>
+            </tr>
+            <tr>
+                <th>영업시간</th>
+                <td><%= @seller.time %></td>
+            </tr>
+            <tr>
+                <th>휴무일</th>
+                <td><%= @seller.close %></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><%= @seller.contact %></td>
+            </tr>
+            <tr>
+                <th>배달</th>
+                <td><%= @seller.delivery %></td>
+            </tr>
+        </table>   
+    </div>
+    </div>
+
+</div>     
+
+<!--***판매리스트***-->
+<div id="item_detail">
+    
+    <div class="detail_section_header">
+        <div class="detail_section_icon">
+            <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
+        </div>
+        <div class="detail_section_name">
+            판매리스트 (<%= @items.count %>)
+        </div>
+    </div>
+    
+    <div class="detail_section_body">
+    <div class="item_table">
+        <% @items.each do |item|%>
+        <table class ="item_table">
+            <tr>
+                <td rowspan="4">
+                    <% if item.image.attached? %>
+                        <img class="item_photo" src="<%= url_for(item.image) %>">
+                    <% else %>
+                        <img class="item_photo" src="<%= asset_path("sorry_no_image.jpg") %>">
+                    <% end %>
+                </td>
+                <td>
+                    <%= item.sold %>
+                </td>
+                <td colspan="2">
+                    Last updated: <%= item.updated_at %>
+                </td>
+            </tr>
+            <tr>
+                <!--td img -->
+                <td colspan="2">
+                    <span class="flower_name"><%= item.name %></span>
+                </td>
+                <td rowspan="3">
+                    <span style = "font-weight: bolder">가격</span>
+                    <hr><%= item.cost %>원
+                </td>
+            </tr>
+            <tr>
+                <!--td img -->
+                <th>
+                    입고날짜:
+                </th>
+                <th>
+                    입고수량:
+                </th>
+                <!--td cost -->
+            </tr>
+            <tr>
+                <!--td img -->
+                <td>
+                    <%= item.come %>
+                </td>
+                <td>
+                    <%= item.amount %>
+                </td>
+                <!--td cost -->
+            </tr>
+        </table>
+        <hr>
+        <% end %>
+    </div>
+    </div>
+</div>
+<!--***리뷰***-->
+<div id="review_detail">
+
+    <div class="detail_section_header">
+        <div class="detail_section_icon">
+            <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
+        </div>
+        <div class="detail_section_name">
+            리뷰 (<%= @comment.count %>)
+        </div>
+    </div>
+
+    <div class="detail_section_body">
+    </div>
+    
+</div>
+
+</div>
+
+
+</div>
+</div>
+</body>    
+</html>
