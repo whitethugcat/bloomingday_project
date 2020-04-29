@@ -67,14 +67,14 @@
 
 <!--***세부정보***-->
 
-<div id="store_detail">
+<div class="store_detail">
 
     <div class="detail_section_header">
         <div class="detail_section_icon">
             <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
         </div>
         <div class="detail_section_name">
-            세부정보
+            <span id="store_detail">세부정보</span>
         </div>
     </div>
 
@@ -120,20 +120,20 @@
 </div>     
 
 <!--***판매리스트***-->
-<div id="item_detail">
+<div class="item_detail">
     
     <div class="detail_section_header">
         <div class="detail_section_icon">
             <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
         </div>
         <div class="detail_section_name">
-            판매리스트 (<%= @items.count %>)
+            <span id="item_detail">판매리스트 (<%= @seller.items.count %>)</span>
         </div>
     </div>
     
     <div class="detail_section_body">
     <div class="item_table">
-        <% @items.each do |item|%>
+        <% @seller.items.each do |item|%>
         <table class ="item_table">
             <tr>
                 <td rowspan="4">
@@ -147,7 +147,13 @@
                     <%= item.sold %>
                 </td>
                 <td colspan="2">
-                    Last updated: <%= item.updated_at %>
+                    <span class="updated_at">
+                    업데이트: 
+                    <%= item.updated_at.strftime('%Y')%>년
+                    <%= item.updated_at.strftime('%m')%>월
+                    <%= item.updated_at.strftime('%d')%>일, 
+                    <%= item.updated_at.strftime('%H')%>시
+                    </span>
                 </td>
             </tr>
             <tr>
@@ -187,18 +193,34 @@
     </div>
 </div>
 <!--***리뷰***-->
-<div id="review_detail">
+<div class="review_detail">
 
     <div class="detail_section_header">
         <div class="detail_section_icon">
             <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
         </div>
         <div class="detail_section_name">
-            리뷰 (<%= @comment.count %>)
+            <span id="review_detail">리뷰 (<%= @seller.comments.count %>)</span>
         </div>
     </div>
 
     <div class="detail_section_body">
+
+        <form action ="/blooming_days/<%= @seller.id %>/comments/create" method = "POST">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            이름: <input type="text" name="name">
+            댓글: <input type="text" name="body">
+            <button>제출</button>
+        </form>
+        
+        <hr>
+        
+        <% @seller.comments.each do |comment| %>
+            작성자: <%= comment.name %>
+            내용: <%= comment.body %>
+            <hr>
+        <% end %>
+
     </div>
     
 </div>

@@ -113,8 +113,7 @@ body{
     
 }
 
-
-.item_table th, td {
+.item_table th, .item_table td {
     border: 1px solid white;
 }
 
@@ -335,6 +334,12 @@ th{
 
 td{
     text-align: center;
+}
+
+.updated_at{
+    font-size: 12px;
+    vertical-align: center;
+    padding-bottom: 4px;
 }
 
 .logo{
