@@ -4,6 +4,9 @@ class BloomingDaysController < ApplicationController
   #buyer가 보는 첫 페이지 (seller 목록)
   def index
     @sellers = Seller.all
+    
+    @pagy, @sellers = pagy(@sellers, items: 5)
+    
   end
 
   #seller 페이지

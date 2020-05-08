@@ -11,11 +11,13 @@
 
 body{
     background-color: #DCDCDC;
+    padding: 3px;
 }
 
 .background{
     width: 430px;
     min-height: 100%;
+    border-radius: 10px;
     height: auto;
     margin: auto;
     background-color: #E6E6FA;
@@ -30,16 +32,15 @@ body{
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 5px;
-    padding: 15px;
-    padding-top: 30px;
+    padding: 0px;
 }
 
 .header{
     position: fixed;
     top: 3%;
     left: 50%;
-    margin-left: -205px;
-    width: 400px;
+    margin-left: -200px;
+    width: 383px;
     z-index: 1;
     display: grid;
     grid-gap: 2px;
@@ -148,8 +149,8 @@ body{
 
 .login_logout{
     display: inline-block;
-    grid-column: 1 / 4;
-    grid-row: 3 / 4 ;
+    grid-column: 4.7 / 7;
+    grid-row: 2 / 3 ;
 }
 
 .content{
@@ -216,8 +217,12 @@ body{
 }
 
 .login_logout{
-    margin: 7px 3px 0px 3px;
-    padding: 3px;
+    border-radius: 5px;
+    margin-bottom: 8px;
+    margin-left: 3.5px;
+    margin-top: 1px;
+    width: 280%;
+    padding: 2px;
     border: 2px solid lavender;
 }
 
@@ -226,8 +231,8 @@ body{
     margin: 3px;
     margin-top: 5px;
     border-radius: 7px;
-    background-color: lightgrey;
-    opacity: 0.7;
+    background-color: white;
+    opacity: 1;
 }
 
 .detail_section_header{
@@ -235,7 +240,7 @@ body{
     margin: 3px;
     margin-top: 5px;
     border-radius: 7px;
-    background-color: lightgrey;
+    background-color: white;
     vertical-align: middle;
     opacity: 0.9;
 }
@@ -245,9 +250,9 @@ body{
     margin: 3px;
     margin-top: 5px;
     border-radius: 7px;
-    background-color: lightgrey;
+    background-color: white;
     vertical-align: middle;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .detail_section_icon{
@@ -260,8 +265,8 @@ body{
     padding: 3px;
     margin: 1px;
     border-radius: 7px;
-    background-color: lightgrey;
-    opacity: 0.7;
+    background-color: white;
+    opacity: 1;
     text-align: center;
 }
 
@@ -282,9 +287,12 @@ body{
 
 .content .card{
     padding: 8px;
-    margin: 8px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
     border-radius: 7px;
-    background-color: lightgrey;
+    background-color: white;
     opacity: 0.7;
 }
 
@@ -344,7 +352,7 @@ td{
 
 .logo{
     color: #DB7093;
-    font-size: 40px;
+    font-size: 38px;
     text-align: right;
     font-family: "GyeonggiBatang";
     text-shadow: 2px 2px white 50%;
@@ -354,12 +362,16 @@ td{
     font-size: 30px;
     text-align: left;
     color: #DB7093;
-    opacity: 0.8;
+    font-family: "GyeonggiBatang";
+    vertical-align: middle;
+    padding-top: 17px;
+    padding-left: 9px;
 }
 
 .my_page{
     text-align: left;
     font-size: 20px;
+    padding-left: 9px;
 }
 
 .login_logout{
@@ -392,12 +404,34 @@ td{
 
 .location{
     text-align: center;
+    padding-top: 2px;
 }
 
 .type{
     text-align: center;
+    padding-top: 2px;
 }
 
 .flower_name{
     text-align: left;
+}
+
+.page_number{
+    text-align: center;
+}
+
+a {
+  color: #DB7093;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #F89429;
+  text-decoration: none;
+  background-color: #FAE8CE;
+}
+
+a:active {
+  color: #DC82C1;
+  font-weight: bold;
 }

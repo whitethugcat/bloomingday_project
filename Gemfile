@@ -67,3 +67,5 @@ gem 'any_login'
 
 gem 'bootstrap', '~> 4.4.1'
 gem 'jquery-rails'
+gem 'pagy'
+gem 'carousel-ruby-api', '~> 0.0.1'

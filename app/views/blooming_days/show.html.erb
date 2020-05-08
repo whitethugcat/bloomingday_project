@@ -12,14 +12,14 @@
             <% if user_signed_in? %>
                 <%= current_user.email %> 님 안녕하세요!
             <% else %>
-                안녕하세요, 화요일입니다 :)
+                안녕하세요 :) 
             <% end %>
         </div>
         <div class="logo">
-            화(花)요일
+            blooming day &#x1F337
         </div>
         <div class="page_name">
-            구매자 페이지
+            buyer |
         </div>
         <!--메인페이지 링크 삭제-->
         <div class="login_logout">
@@ -30,9 +30,7 @@
             <% end %>
         </div>
 
-
 <!--***디테일 헤더***-->
-
     <div class="detail_header">
         <div class="detail_header_back">
             <a href="/blooming_days/index"><img class="detail_header_back" src="<%= asset_path("back_button.png") %>"></a>
@@ -53,7 +51,6 @@
         </div>
     </div>
 </div>
-
 <!--***사진***-->
 
 <div class="container">
