@@ -31,10 +31,11 @@
 
 <!--***컨텐츠부분***-->
 
+
 <div class="container">
 <div class="content">
     
-    
+
 <% @sellers.each do |seller|%>
     <div class="card">
         <div class="store_name">
@@ -46,8 +47,37 @@
         <div class="type">
             <%= seller.sort %>
         </div>
+        
         <% if seller.img.attached? %>
-        <img class="store_photo" src="<%= url_for(seller.img) %>">
+
+<!--***캐러셀 테스트***-->
+<div id="main">
+    <div id="carousel">
+        <ul>
+            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
+            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
+            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
+            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
+            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    
+$(document).ready(function(){
+   setInterval(function(){
+  $('#carousel ul').animate({marginLeft:'-100%'}, 4000, function() {
+      $(this).find("li:last").after($(this).find("li:first"));
+      $(this).css({marginLeft:0});
+  });
+  },2000);    
+});
+
+</script>
+
+<!--***캐러셀 테스트 끝***-->
+
         <% end %>
     </div>
 
