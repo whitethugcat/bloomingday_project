@@ -56,17 +56,16 @@
             <%= seller.region %>
         </div>
         
-        <% if seller.img.attached? %>
+        <% if seller.img.present? %>
 
 <!--***캐러셀 테스트***-->
 <div id="main">
     <div id="carousel">
         <ul>
-            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
-            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
-            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
-            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
-            <li><img class="store_photo" src="<%= url_for(seller.img) %>"></li>
+            <li><img class="store_photo" src="<%= seller.img %>"></li>
+            <li><img class="store_photo" src="<%= seller.img %>"></li>
+            <li><img class="store_photo" src="<%= seller.img %>"></li>
+            <li><img class="store_photo" src="<%= seller.img %>"></li>
         </ul>
     </div>
 </div>

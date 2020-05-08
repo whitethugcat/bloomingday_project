@@ -54,8 +54,8 @@
 <div class="detail_content">
     
     <div class="side-crop">
-        <% if @seller.img.attached? %>
-        <img class="detail_photo" src="<%= url_for(@seller.img) %>">
+        <% if @seller.img.present? %>
+        <img class="detail_photo" src="<%= @seller.img %>">
         <% end %>
     </div>
 
@@ -138,8 +138,8 @@
         <table class ="item_table">
             <tr>
                 <td rowspan="4">
-                    <% if item.image.attached? %>
-                        <img class="item_photo" src="<%= url_for(item.image) %>">
+                    <% if item.image.present? %>
+                        <img class="item_photo" src="<%= item.image %>">
                     <% else %>
                         <img class="item_photo" src="<%= asset_path("sorry_no_image.jpg") %>">
                     <% end %>
