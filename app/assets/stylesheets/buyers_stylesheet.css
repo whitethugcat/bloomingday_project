@@ -196,6 +196,12 @@ body{
     grid-row: 2;
 }
 
+#main{
+    grid-column: 1 / 7;
+    grid-row: 2;
+}
+
+
 .detail_photo{
     grid-column: 1 / 7;
     grid-row: 1;
@@ -434,4 +440,40 @@ a:hover {
 a:active {
   color: #DC82C1;
   font-weight: bold;
+}
+
+/*캐러셀 테스트*/
+
+#main {
+    marign: auto;
+    padding: 0px;
+}
+
+#carousel {
+    width: 380px;
+    max-height: 250px;
+    margin-top:-15px;
+    overflow: hidden;
+    vertical-align: top;
+}
+
+#carousel ul{
+    list-style: none;
+    width: 1900px;
+    padding-inline-start: 0;
+}
+
+#carousel ul li{
+    float: left;
+    width: 380px;
+    transition-timing-function: ease-in-out;
+}
+
+#carousel ul li img{
+    width: 380px;
+}
+
+.location_button{
+    border-radius: 5px;
+    border: white solid 1px;
 }
