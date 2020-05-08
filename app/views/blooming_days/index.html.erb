@@ -27,18 +27,22 @@
             <% end %>
         </div>
     </div>
-    <!--검색기능 추가-->
-    <form action="/blooming_days/index" method="GET">
-        <input type="text" name="query" vlaue="<%= params[:query]%>" placeholder="꽃 이름을 검색하세요">
-        <button type="submit">검색<button>
-    </form>
+    
+
 
 <!--***컨텐츠부분***-->
 
 
 <div class="container">
 <div class="content">
-    
+
+    <!--검색기능 추가-->
+    <div class ="search_bar">
+        <form action="/blooming_days/index" method="GET">
+            <input type="text" name="query" vlaue="<%= params[:query]%>" placeholder="꽃 이름을 검색 하세요 (예: 튤립)">
+            <button type="submit">검색</button>
+        </form>
+    </div>
 
 <% @sellers.each do |seller|%>
     <div class="card">
@@ -48,8 +52,8 @@
         <div class="location">
             <%= seller.location %>
         </div>
-        <div class="type">
-            <%= seller.sort %>
+        <div class="region">
+            <%= seller.region %>
         </div>
         
         <% if seller.img.attached? %>
