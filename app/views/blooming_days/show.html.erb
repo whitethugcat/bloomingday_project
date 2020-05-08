@@ -1,40 +1,33 @@
-<!--구매자페이지 상세 페이지-->
-
-<body>
+<!--구매자페이지 첫번째 페이지-->
     
 <div class="background">
-    
+
 <!--***헤더부분***-->
+
     <div class="header">
         <div class="my_page">
             <% if user_signed_in? %>
                 <%= current_user.email %> 님 안녕하세요!
-                <a href="/users/sign_out" data-method="delete">로그아웃</a>
-               
             <% else %>
-                <a href="/users/sign_in">로그인</a>
+                안녕하세요 :) 
             <% end %>
         </div>
         <div class="logo">
-            화(花)요일
+            blooming day &#x1F337
         </div>
         <div class="page_name">
-            구매자 페이지
+            buyer |
         </div>
-        <div class="main_page">
-            <!--메인페이지 링크 나중에 삽입-->
-            메인페이지로
-        </div>
+        <!--메인페이지 링크 삭제-->
         <div class="login_logout">
             <% if user_signed_in? %>
                 <a href="/users/sign_out" data-method="delete">로그아웃</a>
             <% else %>
-                <a href="/users/sign_in">로그인/회원가입</a>
-            <% end %>    
+                <a href="/users/sign_in">로그인</a>
+            <% end %>
         </div>
-    
-<!--***디테일 헤더***-->
 
+<!--***디테일 헤더***-->
     <div class="detail_header">
         <div class="detail_header_back">
             <a href="/blooming_days/index"><img class="detail_header_back" src="<%= asset_path("back_button.png") %>"></a>
@@ -45,50 +38,241 @@
     </div>
     <div class="detail_header_menu">
         <div class="detail_header_menu_items">
-            세부정보
+            <a href="#store_detail">세부정보</a>
         </div>
         <div class="detail_header_menu_items">
-            판매리스트
+            <a href="#item_detail">판매리스트</a>
         </div>
         <div class="detail_header_menu_items">
-            리뷰
+            <a href="#review_detail">리뷰</a>
         </div>
     </div>
 </div>
-
 <!--***사진***-->
 
 <div class="container">
 <div class="detail_content">
-
+    
+    <div class="side-crop">
+        <% if @seller.img.attached? %>
+        <img class="detail_photo" src="<%= url_for(@seller.img) %>">
+        <% end %>
+    </div>
 
 <!--***세부정보***-->
 
-<div class="side-crop">
-    <img class="detail_photo" src="<%= url_for(@seller.img) %>">
-</div>
-
 <div class="store_detail">
 
-    <div class="detail_section">
+    <div class="detail_section_header">
         <div class="detail_section_icon">
             <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
         </div>
-        <div class="details_section_name">
-            세부정보
+        <div class="detail_section_name">
+            <span id="store_detail">세부정보</span>
         </div>
     </div>
 
-</div>
+    <div class="detail_section_body">
+    <div class="store_table">
+        <table>     
+            <tr>
+                <th>판매처</th>
+                <td><%= @seller.name %></td>
+            </tr>
+            <tr>
+                <th>지역</th>
+                <td><%= @seller.location %></td>
+            </tr>
+            <tr>
+                <th>품목</th>
+                <td><%= @seller.sort %></td>
+            </tr>
+            <tr>
+                <th>호수</th>
+                <td><%= @seller.region %> (<a href="<%= asset_path("no_map.png") %>" target="blank">위치</a>)</td>
+            </tr>
+            <tr>
+                <th>영업시간</th>
+                <td><%= @seller.time %></td>
+            </tr>
+            <tr>
+                <th>휴무일</th>
+                <td><%= @seller.close %></td>
+            </tr>
+            <tr>
+                <th>전화번호</th>
+                <td><%= @seller.contact %></td>
+            </tr>
+            <tr>
+                <th>배달</th>
+                <td>
+                    <% if @seller.delivery == 1 %>
+                        O
+                    <% else %>
+                        X
+                    <% end %>
+
+                </td>
+            </tr>
+        </table>   
+    </div>
+    </div>
+
+</div>     
+
 <!--***판매리스트***-->
-
+<div class="item_detail">
+    
+    <div class="detail_section_header">
+        <div class="detail_section_icon">
+            <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
+        </div>
+        <div class="detail_section_name">
+            <span id="item_detail">판매리스트 (<%= @seller.items.count %>)</span>
+        </div>
+    </div>
+    
+    <div class="detail_section_body">
+    <div class="item_table">
+        <% @seller.items.each do |item|%>
+        <table class ="item_table">
+            <tr>
+                <td rowspan="4">
+                    <% if item.image.attached? %>
+                        <img class="item_photo" src="<%= url_for(item.image) %>">
+                    <% else %>
+                        <img class="item_photo" src="<%= asset_path("sorry_no_image.jpg") %>">
+                    <% end %>
+                </td>
+                <td>
+                    <% if item.sold == 1 %>
+                        <span class="in_stock">판매중</span>
+                    <% else %>
+                        <span class="sold_out">재고소진</span>
+                    <% end %>
+                </td>
+                <td colspan="2">
+                    <span class="updated_at">
+                    업데이트: 
+                    <%= item.updated_at.strftime('%Y')%>년
+                    <%= item.updated_at.strftime('%m')%>월
+                    <%= item.updated_at.strftime('%d')%>일, 
+                    <%= item.updated_at.strftime('%H')%>시
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <!--td img -->
+                <td colspan="2">
+                    <span class="flower_name"><%= item.name %></span>
+                </td>
+                <td rowspan="3">
+                    <span style = "font-weight: bolder">가격</span>
+                    <hr><%= item.cost %>원
+                </td>
+            </tr>
+            <tr>
+                <!--td img -->
+                <th>
+                    입고날짜:
+                </th>
+                <th>
+                    입고수량:
+                </th>
+                <!--td cost -->
+            </tr>
+            <tr>
+                <!--td img -->
+                <td>
+                    <%= item.come %>
+                </td>
+                <td>
+                    <%= item.amount %>
+                </td>
+                <!--td cost -->
+            </tr>
+        </table>
+        <hr>
+        <% end %>
+    </div>
+    </div>
+</div>
 <!--***리뷰***-->
+<div class="review_detail">
 
+    <div class="detail_section_header">
+        <div class="detail_section_icon">
+            <img class="detail_section_icon_img" src="<%= asset_path("section_flower.png") %>">
+        </div>
+        <div class="detail_section_name">
+            <span id="review_detail">리뷰 (<%= @seller.comments.count %>)</span>
+        </div>
+    </div>
+
+    <div class="detail_section_body">
+
+        <form action ="/blooming_days/<%= @seller.id %>/comments/create" method = "POST">
+            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+            이름: <input type="text" name="name">
+            댓글: <input type="text" name="body">
+            <button>제출</button>
+        </form>
+        
+        <hr>
+        
+        <% @seller.comments.each do |comment| %>
+            작성자: <%= comment.name %>
+            내용: <%= comment.body %>
+            <hr>
+        <% end %>
+
+    </div>
+    
+</div>
 
 </div>
 
 
 </div>
 </div>
-</body>    
-</html>
+    <script>
+    $(document).ready(function(){
+        $('a[href^="#store_detail"]').on('click',function (e) {
+            console.log("clicked!")
+            e.preventDefault();
+            var target = this.hash;
+            var $trget = $(target);
+            // Example: your header is 400px tall.
+            var newTop = $trget.offset().top - 210; 
+            $('html, body').animate ({
+                scrollTop: newTop
+            }, 400, 'swing'); 
+        });
+        
+         $('a[href^="#item_detail"]').on('click',function (e) {
+            console.log("clicked!")
+            e.preventDefault();
+            var target = this.hash;
+            var $trget = $(target);
+            // Example: your header is 400px tall.
+            var newTop = $trget.offset().top - 210; 
+            $('html, body').animate ({
+                scrollTop: newTop
+            }, 400, 'swing'); 
+        });
+        
+        
+        $('a[href^="#review_detail"]').on('click',function (e) {
+            console.log("clicked!")
+            e.preventDefault();
+            var target = this.hash;
+            var $trget = $(target);
+            // Example: your header is 400px tall.
+            var newTop = $trget.offset().top - 210; 
+            $('html, body').animate ({
+                scrollTop: newTop
+            }, 400, 'swing'); 
+        });
+    })
+
+</script>

@@ -60,7 +60,8 @@ body{
     grid-template-columns: repeat(6fr);
     grid-column: 1 / 7;
     grid-row-start: 4;
-    align-items: center
+    align-items: center;
+    border: 1px solid #aecca9;
 }
 
 .detail_header_back{
@@ -495,7 +496,7 @@ a:active {
 }
 
 .in_stock{
-    background-color:#A52A2A;
+    background-color:#2E8B57;
     border-radius: 3px;
     color:white;
     opacity:0.9;
@@ -505,7 +506,7 @@ a:active {
 }
 
 .sold_out{
-    background-color:#2E8B57;
+    background-color:#A52A2A;
     border-radius: 3px;
     color:white;
     opacity:0.9;
@@ -513,3 +514,4 @@ a:active {
     padding-right: 7px;
     padding-bottom: 2px;
 }
+
