@@ -27,7 +27,11 @@
             <% end %>
         </div>
     </div>
-
+    <!--검색기능 추가-->
+    <form action="/blooming_days/index" method="GET">
+        <input type="text" name="query" vlaue="<%= params[:query]%>" placeholder="꽃 이름을 검색하세요">
+        <button type="submit">검색<button>
+    </form>
 
 <!--***컨텐츠부분***-->
 
@@ -83,9 +87,10 @@ $(document).ready(function(){
 
 <% end %>
 
-<hr><div class ="page_number">
-<%== pagy_nav(@pagy) %> <%== pagy_info(@pagy) %>
-</div>
+<hr>
+    <div class ="page_number">
+    <%== pagy_nav(@pagy) %> <%== pagy_info(@pagy) %>
+    </div>
 <br>
 
 </body>

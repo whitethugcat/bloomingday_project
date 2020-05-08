@@ -3,10 +3,21 @@ class BloomingDaysController < ApplicationController
   
   #buyer가 보는 첫 페이지 (seller 목록)
   def index
-    @sellers = Seller.all
-    
-    @pagy, @sellers = pagy(@sellers, items: 5)
-    
+    if params[:query].present?
+      
+      @sellers = [] 
+      @items = Item.where("name LIKE?", "%#{params[:query]}%")
+      
+      @items.each do |item|
+        @sellers.push item.seller
+      end
+      
+      @pagy, @sellers = pagy_array(@sellers, items: 5)
+      
+    else
+      @sellers = Seller.all
+      @pagy, @sellers = pagy(@sellers, items: 5)
+    end
   end
 
   #seller 페이지

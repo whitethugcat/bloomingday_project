@@ -31,3 +31,5 @@ user_2 = User.create(email: "2@2", password: "111111", password_confirmation: "1
 user_3 = User.create(email: "3@3", password: "111111", password_confirmation: "111111")
 user_4 = User.create(email: "4@4", password: "111111", password_confirmation: "111111")
 user_5 = User.create(email: "5@5", password: "111111", password_confirmation: "111111")
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
