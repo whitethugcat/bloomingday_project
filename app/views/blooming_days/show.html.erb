@@ -108,7 +108,14 @@
             </tr>
             <tr>
                 <th>배달</th>
-                <td><%= @seller.delivery %></td>
+                <td>
+                    <% if @seller.delivery == 1 %>
+                        O
+                    <% else %>
+                        X
+                    <% end %>
+                    
+                </td>
             </tr>
         </table>   
     </div>

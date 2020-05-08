@@ -7,29 +7,6 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 #Seller.destroy_all
-seller_1 = Seller.create(name: '멋직1', region: '제 123호', sort: '생화', location: '1호', time: '월~토 24:00~11:00', close: '일요일', contact: '02-1234', delivery: 1)
-seller_1.img.attach(io: File.open("#{Rails.root}/public/1.jpg"), filename: '1.jpg')
+item_1 = Item.create(name: '프리지아', seller_id: 1, come: '5월 1일', amount: '20단', cost: '10,000원', sold: 1)
+item_1.image.attach(io: File.open("#{Rails.root}/public/프리지아.jpg"), filename: '프리지아.jpg')
 
-seller_2 = Seller.create(name: '멋직2', region: '제 345호', sort: '생화', location: '1호', time: '월~토 24:00~11:00', close: '일요일', contact: '02-1234', delivery: 1)
-seller_2.img.attach(io: File.open("#{Rails.root}/public/1.jpg"), filename: '1.jpg')
-
-seller_3 = Seller.create(name: '멋직3', region: '제 678호', sort: '생화', location: '1호', time: '월~토 24:00~11:00', close: '일요일', contact: '02-1234', delivery: 1)
-seller_3.img.attach(io: File.open("#{Rails.root}/public/1.jpg"), filename: '1.jpg')
-
-seller_2 = Seller.create(name: '멋직4', region: '제 901호', sort: '생화', location: '1호', time: '월~토 24:00~11:00', close: '일요일', contact: '02-1234', delivery: 1)
-seller_2.img.attach(io: File.open("#{Rails.root}/public/1.jpg"), filename: '1.jpg')
-
-seller_2 = Seller.create(name: '멋직5', region: '제 902호', sort: '생화', location: '1호', time: '월~토 24:00~11:00', close: '일요일', contact: '02-1234', delivery: 1)
-seller_2.img.attach(io: File.open("#{Rails.root}/public/1.jpg"), filename: '1.jpg')
-
-seller_2 = Seller.create(name: '멋직6', region: '제 013호', sort: '생화', location: '1호', time: '월~토 24:00~11:00', close: '일요일', contact: '02-1234', delivery: 1)
-seller_2.img.attach(io: File.open("#{Rails.root}/public/1.jpg"), filename: '1.jpg')
-
-
-user_1 = User.create(email: "1@1", password: "111111", password_confirmation: "111111")
-user_2 = User.create(email: "2@2", password: "111111", password_confirmation: "111111")
-user_3 = User.create(email: "3@3", password: "111111", password_confirmation: "111111")
-user_4 = User.create(email: "4@4", password: "111111", password_confirmation: "111111")
-user_5 = User.create(email: "5@5", password: "111111", password_confirmation: "111111")
-
-AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
